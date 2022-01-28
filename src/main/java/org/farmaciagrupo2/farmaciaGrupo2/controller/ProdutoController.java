@@ -29,18 +29,19 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 	
+	
 	@GetMapping
 	public ResponseEntity<List<Produto>> getdAllProduto() {
 		return ResponseEntity.ok(produtoRepository.findAll());
 }
-	@GetMapping
+	@GetMapping ("/{id}")
 	public ResponseEntity<Produto> getByIdProduto(@PathVariable long id) {
 		return produtoRepository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 }		
 
-	@GetMapping("nome/{nome}")
+	@GetMapping("/nome/{nome}")
 	public ResponseEntity<List<Produto>> getByNome(@PathVariable String nome) {
-		return ResponseEntity.ok(produtoRepository.findAllByProdutoContainingIgnoreCase(nome));
+		return ResponseEntity.ok(produtoRepository.findAllByNomeContainingIgnoreCase(nome));
 }
 	@PostMapping
 	public ResponseEntity<Produto> postProduto (@Valid @RequestBody Produto produto){

@@ -63,6 +63,5 @@ public class ProdutoController {
 					return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 				})
 				.orElse(ResponseEntity.notFound().build());
-	}
-
+		}
 }
